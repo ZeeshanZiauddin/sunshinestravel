@@ -1,8 +1,11 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
+use App\Console\Commands\FetchDestinations;
+use App\Console\Commands\FetchMetaData;
 use Illuminate\Support\Facades\Artisan;
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote')->hourly();
+
+use Illuminate\Support\Facades\Schedule;
+
+Schedule::command(FetchMetaData::class)->everySecond();
+Schedule::command(FetchDestinations::class)->everySecond();
